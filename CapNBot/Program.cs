@@ -19,14 +19,29 @@ namespace CapNBot
             );
 
             irc.joinChannel(ConfigurationManager.AppSettings["twitchChannel"]);
-
-            while(true)
+            
+            try
             {
-                string message = irc.readMessage();
-                if (message.Contains("!hello"))
+                while (true)
                 {
-                    irc.sendChatMessage("Hey friend!");
+                    string message = irc.readMessage();
+                    if (message.Contains("!hello"))
+                    {
+                        irc.sendChatMessage("Hey friend!");
+                    }
                 }
+            }
+            catch (NullReferenceException e)
+            {
+                Console.WriteLine("Error: " + e.Message);
+                Console.WriteLine();
+                Console.WriteLine("Failed to connect. Is the bot account active?");
+                Console.WriteLine("1) Try adding the bot to a chat window from within the browser.");
+                Console.WriteLine("2) Check that all of the bots credentials are correct.");
+                Console.WriteLine();
+                Console.WriteLine();
+                Console.WriteLine("Hit enter to close.");
+                Console.ReadLine();
             }
         }
     }
