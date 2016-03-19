@@ -29,6 +29,12 @@ namespace CapNBot
                     {
                         irc.sendChatMessage("Hey friend!");
                     }
+
+                    if (message.Contains("dark souls"))
+                    {
+                        DarkSoulsThree DarkSoulsThree = new DarkSoulsThree(message);
+                        irc.sendChatMessage(DarkSoulsThree.getResponse());
+                    }
                 }
             }
             catch (NullReferenceException e)
